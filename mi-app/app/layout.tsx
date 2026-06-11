@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Header from "./components/Header"; // 👈 Asegúrate de que la ruta a tu componente sea la correcta
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,10 +25,18 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
+        {/* El Header global arriba de todo */}
+        <Header />
+        
+        {/* Contenedor del contenido con padding-top para que el Header no tape nada */}
+        <div className="flex-1 flex flex-col pt-16">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
